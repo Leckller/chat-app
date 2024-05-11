@@ -11,11 +11,14 @@ const io = require('socket.io')(http, {
 
 io.on('connection', (socket) => {
   console.log(`Usuário conectado. ID: ${socket.id} `);
-  socket.on("hello", () => {
-    console.log("oh hello")
-    socket.emit("oi")
-  })
 });
+
+io.on('connection', (socket) => {
+  socket.on('clientMessage', (message) => {
+    console.log(`Mensagem ${message}`);
+    io.emit('serverMessage', message);
+  });
+})
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
