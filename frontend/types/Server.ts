@@ -5,5 +5,5 @@ export interface ClientToServerEvents {
 
 export interface ServerToClientEvents {
     // Eventos do servidor para o cliente (envia uma requisição, logica no lado cliente)
-
+    helloBack: () => void
 }
